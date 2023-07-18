@@ -7,14 +7,18 @@ path = "./**/*.ts"
 
 findings = []
 
+
 def printPositive(file):
     print('[X]', file)
+
 
 def printNegative(file):
     print('[ ]', file)
 
+
 def addToNegativeList(file):
     findings.append(file)
+
 
 for path in glob.glob(path, recursive=True):
 
@@ -30,6 +34,11 @@ for path in glob.glob(path, recursive=True):
         #     addToNegativeList(path)
 
 print("----------------------------------------------------")
-print("Please check following files: \n")
-for finding in findings:
-    print("\t", finding)
+if findings:
+
+    print("Please check following files: \n")
+    for finding in findings:
+        print("\t", finding)
+else:
+    print("404: No files found!")
+print("----------------------------------------------------")
