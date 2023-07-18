@@ -10,11 +10,14 @@ COPYRIGHT_REGEX = """/(?:copyright[ \t]*)?\(c\)[ \t]+(?:19|20)[0-9]{2}(?: - (?:1
 
 findings = []
 
+
 def printPositive(file):
     print('[X]', file)
 
+
 def printNegative(file):
     print('[ ]', file)
+
 
 def addToNegativeList(file):
     findings.append(file)
@@ -37,10 +40,15 @@ def scan(path, regexPattern):
             #     printNegative(path)
             #     addToNegativeList(path)
 
-    print("----------------------------------------------------")
-    print("Please check following files: \n")
-    for finding in findings:
-        print("\t", finding)
+            print("----------------------------------------------------")
+            if findings:
+
+                print("Please check following files: \n")
+                for finding in findings:
+                    print("\t", finding)
+            else:
+                print("404: No files found!")
+            print("----------------------------------------------------")
 
 if __name__ == "__main__":
 
