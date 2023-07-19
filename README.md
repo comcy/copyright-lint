@@ -18,3 +18,7 @@ The following pattern shows a standard copyright regex pattern matching copyrght
 /(?:copyright[ \t]*)?\(c\)[ \t]+(?:19|20)[0-9]{2}(?: - (?:19|20)[0-9]{2})? ACME GmbH - All Rights Reserved\. ACME,(?:\n\/\/)? ACME\.com are trademarks of ACME AG/gmi
 
 ```
+
+```
+(?:copyright[ \t]*)?\(c\)[ \t]+(?:20)[0-9]{2}(?: - (?:20)[0-9]{2})? ACME GmbH - All Rights Reserved\.(?:\n\/\/)? ACME, ACME\.com are trademarks of ACME AG
+```
