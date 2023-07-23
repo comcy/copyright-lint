@@ -30,14 +30,23 @@ def scan(path, regexPattern=comp):
         with open(path) as file:
             # with open(path) as f:
 
-            print("file >>> ", file)
+            # print("file >>> ", file)
             filetext = file.read()
 
-            print("filetext >>> \n", filetext)
+            # print("filetext >>> \n", filetext)
             # file.close()
 
             matches = re.findall(regexPattern, str(filetext))
-            print("match >>> ", matches)
+            # print("match >>> ", matches)
+
+            if len(matches) > 0:
+                printPositive(path)
+                if len(matches) > 1:
+                    print("To many copyright notice header found. Remove obsolete ones from file.")
+            else:
+                printNegative(path)
+                addToNegativeList(path)
+
 
         # print("file >>> ", f)
 
@@ -61,7 +70,8 @@ if __name__ == "__main__":
         file_ext = sys.argv[2]  # file extension
         regex = sys.argv[3]  # copyright regex
 
-        scan(root + file_ext, regex)
+        print("Start scan ... \n")
+        scan(root + file_ext)
 
         print("\n")
         print("----------------------------------------------------")
