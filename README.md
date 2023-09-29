@@ -28,3 +28,7 @@ With matching comment signs:
 ```
 \/\*\*\s*\n\s*\*\s*@copyright Copyright \(c\) \d{4} [A-Za-z\s]+\s*\n\s*\*\s*\*\/
 ```
+
+```
+\/\* Copyright \(c\) \d{4} [^\*]+ \*\/
+```
