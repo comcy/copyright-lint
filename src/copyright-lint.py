@@ -3,41 +3,44 @@ import re
 from re import search
 import glob
 
-CPY = """@copyright Copyright"""
+# COPYRIGHT_REGEX = '(?:copyright[ \t]*)?\(c\)[ \t]+(?:20)[0-9]{2}(?: - (?:20)[0-9]{2})? ACME GmbH - All Rights Reserved\.(?:\n\/\/)? ACME, ACME\.com are trademarks of ACME AG'
+# COPYRIGHT_REGEX = '\/\*\s*\*\s*@copyright Copyright \(c\) \d{4} [^\*]+\*\/'
+# COPYRIGHT_REGEX = '\/\/ <copyright>\n\/\/ [^\n]*\n\/\/ [^\n]*\n\/\/ [^\n]*\n\/\/ [^\n]*\n\/\/ Copyright \(c\) \d{4} - \d{4} [^\n]*\n\/\/ [^\n]*\n\/\/ <\/copyright>'
 
-COPYRIGHT_REGEX = '(?:copyright[ \t]*)?\(c\)[ \t]+(?:20)[0-9]{2}(?: - (?:20)[0-9]{2})? ACME GmbH - All Rights Reserved\.(?:\n\/\/)? ACME, ACME\.com are trademarks of ACME AG'
-comp = re.compile(COPYRIGHT_REGEX, re.MULTILINE | re.IGNORECASE)
+# TYPESCRIPT
+TS_COPYRIGHT_REGEX = '\/\*\s*\*\s*@copyright Copyright \(c\) \d{4} [^\*]+\*\/'
 
+# C#
+CS_COPYRIGHT_REGEX ='\/\/ <copyright>(?:[\s\S]*?)\/\/ <\/copyright>'
 
 findings = []
-
 
 def printPositive(file):
     print('[X]', file)
 
-
 def printNegative(file):
     print('[ ]', file)
-
 
 def addToNegativeList(file):
     findings.append(file)
 
+def buildRegex(fileExtension):
+    if fileExtension == '*.ts':
+        COPYRIGHT_REGEX = TS_COPYRIGHT_REGEX
+    if fileExtension == '*.cs':
+        COPYRIGHT_REGEX = CS_COPYRIGHT_REGEX
 
-def scan(path, regexPattern=comp):
+    return re.compile(COPYRIGHT_REGEX, re.MULTILINE | re.IGNORECASE)
+
+def scan(path, fileExtension):
+
+    regexPattern = buildRegex(fileExtension)
+
     for path in glob.glob(path, recursive=True):
 
         with open(path) as file:
-            # with open(path) as f:
-
-            # print("file >>> ", file)
             filetext = file.read()
-
-            # print("filetext >>> \n", filetext)
-            # file.close()
-
             matches = re.findall(regexPattern, str(filetext))
-            # print("match >>> ", matches)
 
             if len(matches) > 0:
                 printPositive(path)
@@ -47,31 +50,18 @@ def scan(path, regexPattern=comp):
                 printNegative(path)
                 addToNegativeList(path)
 
-
-        # print("file >>> ", f)
-
-        # filtered = fnmatch.filter(f, regexPattern)
-        # print(filtered)
-
-        # if CPY in f.read():
-        #     printPositive(path)
-        # else:
-        #     printNegative(path)
-        #     addToNegativeList(path)
-
-
 if __name__ == "__main__":
 
     if len(sys.argv) == 1:
         print(
-            '!!! \U0001F40D ERROR: Please provide a root-patch, a file-extension to scan and a regex to match copyright \U0001F40D !!!')
+            '!!! \U0001F40D ERROR: Please provide a root-path, a file-extension to scan and a regex to match copyright \U0001F40D !!!')
     else:
         root = sys.argv[1]  # root path
         file_ext = sys.argv[2]  # file extension
         regex = sys.argv[3]  # copyright regex
 
         print("Start scan ... \n")
-        scan(root + file_ext)
+        scan(root + file_ext, file_ext)
 
         print("\n")
         print("----------------------------------------------------")

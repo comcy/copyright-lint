@@ -1,5 +1,5 @@
 /*
- * @copyright Copyright (c) 2022 ACME GmbH - All Rights Reserved. ACME, ACME.com are trademarks of ACME AG
+ * @copyright Copyright (c) 2022 - 2023 ACME GmbH - All Rights Reserved. ACME, ACME.com are trademarks of ACME AG
  */
 
 export class Sample {
