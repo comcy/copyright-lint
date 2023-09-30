@@ -13,13 +13,17 @@ TS_COPYRIGHT_REGEX = '\/\*\s*\*\s*@copyright Copyright \(c\) \d{4} [^\*]+\*\/'
 # C#
 CS_COPYRIGHT_REGEX ='\/\/ <copyright>(?:[\s\S]*?)\/\/ <\/copyright>'
 
+# Symbols
+check = '\u2714'
+failed = '\u2718'
+
 findings = []
 
 def printPositive(file):
-    print('[X]', file)
+    print(f'{check}', file)
 
 def printNegative(file):
-    print('[ ]', file)
+    print(f'{failed}', file)
 
 def addToNegativeList(file):
     findings.append(file)
@@ -54,11 +58,10 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 1:
         print(
-            '!!! \U0001F40D ERROR: Please provide a root-path, a file-extension to scan and a regex to match copyright \U0001F40D !!!')
+            '!!! \U0001F40D ERROR: Please provide a root-path and a file-extension to scan and search for matching copyright \U0001F40D !!!')
     else:
         root = sys.argv[1]  # root path
         file_ext = sys.argv[2]  # file extension
-        regex = sys.argv[3]  # copyright regex
 
         print("Start scan ... \n")
         scan(root + file_ext, file_ext)
