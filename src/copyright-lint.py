@@ -1,6 +1,5 @@
 import sys
 import re
-from re import search
 import glob
 
 # COPYRIGHT_REGEX = '(?:copyright[ \t]*)?\(c\)[ \t]+(?:20)[0-9]{2}(?: - (?:20)[0-9]{2})? ACME GmbH - All Rights Reserved\.(?:\n\/\/)? ACME, ACME\.com are trademarks of ACME AG'
