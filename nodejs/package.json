@@ -1,0 +1,42 @@
+{
+  "name": "cpyr8-lint",
+  "version": "0.1.0",
+  "description": "This package is a typescript-standalone package to scan several source code files for a copyright header.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.es.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "bin": {
+    "cpyr8-lint": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc && rollup -c",
+    "watch": "tsc -w && rollup -c -w",
+    "clean-package": "node ./buildtools/cleanup-package.js",
+    "start": "node ./dist/index.js",
+    "start:dev": "node ./index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/comcy/copyright-lint/"
+  },
+  "author": "comcy (Christian Silfang)",
+  "license": "MIT License - Copyright (c) 2023 Christian Silfang",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.2",
+    "@types/node": "^20.8.0",
+    "del": "^7.1.0",
+    "fs": "^0.0.1-security",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  }
+}

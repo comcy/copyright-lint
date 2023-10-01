@@ -1,0 +1,10 @@
+{
+    "fileExtensions": [
+        "*.js",
+        "*.ts",
+        "*.cs"
+    ],
+    "ignoredFiles": [
+        "node_modules/**"
+    ]
+}

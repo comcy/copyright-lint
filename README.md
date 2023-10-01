@@ -4,10 +4,11 @@ This is a simple script for checking source code files for existing copyright he
 
 ## Usage
 
+This library contains scripts written in python for standalone usage and typescript (javascript) for providing a package.
+
 **Parameters**
 
 - `path`: root directory to start the scan
-- `detectPattern`: REGEX pattern to scan for copyright matches
 - `fileExtension`: file extensions which should be scanned
 
 ## Sample Regex
