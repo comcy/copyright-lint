@@ -1,14 +1,13 @@
 import sys
 import re
-from re import search
 import glob
 
 # COPYRIGHT_REGEX = '(?:copyright[ \t]*)?\(c\)[ \t]+(?:20)[0-9]{2}(?: - (?:20)[0-9]{2})? ACME GmbH - All Rights Reserved\.(?:\n\/\/)? ACME, ACME\.com are trademarks of ACME AG'
-# COPYRIGHT_REGEX = '\/\*\s*\*\s*@copyright Copyright \(c\) \d{4} [^\*]+\*\/'
+# COPYRIGHT_REGEX = '\/(\*|\*\*)\s*\*\s*@copyright Copyright \(c\) \d{4} [^\*]+\*\/'
 # COPYRIGHT_REGEX = '\/\/ <copyright>\n\/\/ [^\n]*\n\/\/ [^\n]*\n\/\/ [^\n]*\n\/\/ [^\n]*\n\/\/ Copyright \(c\) \d{4} - \d{4} [^\n]*\n\/\/ [^\n]*\n\/\/ <\/copyright>'
 
 # TYPESCRIPT
-TS_COPYRIGHT_REGEX = '\/\*\s*\*\s*@copyright Copyright \(c\) \d{4} [^\*]+\*\/'
+TS_COPYRIGHT_REGEX = '\/(\*|\*\*)\s*\*\s*@copyright Copyright \(c\) \d{4} [^\*]+\*\/'
 
 # C#
 CS_COPYRIGHT_REGEX ='\/\/ <copyright>(?:[\s\S]*?)\/\/ <\/copyright>'
