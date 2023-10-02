@@ -13,8 +13,10 @@
     "cpyr8-lint": "./dist/index.js"
   },
   "scripts": {
-    "build": "rm -rf ./dist && tsc && rollup -c",
+    "build": "npm run clean && tsc && rollup -c && npm run copy:artifacts && npm run clean-package",
     "watch": "tsc -w && rollup -c -w",
+    "clean": "rm -rf ./dist",
+    "copy:artifacts": "sh./buildtools/copy-artifacts.js",
     "clean-package": "node ./buildtools/cleanup-package.js",
     "start": "node ./dist/index.js",
     "start:dev": "node ./index.ts",
@@ -27,10 +29,12 @@
   "author": "comcy (Christian Silfang)",
   "license": "MIT License - Copyright (c) 2023 Christian Silfang",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.1",
     "@types/fs-extra": "^11.0.2",
     "@types/node": "^20.8.0",
     "del": "^7.1.0",
     "fs": "^0.0.1-security",
+    "rollup-plugin-banner": "^0.2.1",
     "rollup-plugin-typescript2": "^0.36.0",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.2",

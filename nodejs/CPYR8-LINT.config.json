@@ -1,0 +1,20 @@
+{
+    "includes": {
+        "extension": [
+            "*.ts",
+            "*.cs"
+        ],
+        "paths": [
+            "../../test-files"
+        ]
+    },
+    "exclude": {
+        "extension": [
+            "*.tsx",
+            "*.cse"
+        ],
+        "paths": [
+            "../../test-files/not-to-scan"
+        ]
+    }
+}
