@@ -1,5 +1,5 @@
 import typescript from 'rollup-plugin-typescript2';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import del from 'rollup-plugin-delete';
 import copy from 'rollup-plugin-copy';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
@@ -7,6 +7,12 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import pkg from './package.json' assert { type: 'json' };
 
 const BANNER = '#!/usr/bin/env node';
+
+const BUILD_ARTIFACTS = [
+    './index.d.ts',
+    './index.esm.js',
+    './index.esm.js.map'
+];
 
 export default {
     input: 'src/index.ts', // Entry point for your library
@@ -50,14 +56,17 @@ export default {
                         '../README.md',
                         './package.json'
                     ],
-                    dest: 'dist'
+                    dest: './dist'
+                },
+                {
+                    src: BUILD_ARTIFACTS,
+                    dest: './dist'
                 },
             ],
             hook: 'writeBundle',
             copyOnce: true,
             copySync: true,
         }),
-        del({ targets: ['dist'] }), // Clean the output directory
     ],
     external: [], // Specify external dependencies here
 };

@@ -1,2 +1,8 @@
+# nodejs dependencies
 node_modules
+
+# build artifacts
 dist/
+index.esm.js
+index.esm.js.map
+index.d.ts
