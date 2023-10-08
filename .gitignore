@@ -3,6 +3,6 @@ node_modules
 
 # build artifacts
 dist/
-index.esm.js
-index.esm.js.map
-index.d.ts
+*.esm.js
+*.esm.js.map
+*.d.ts
