@@ -14,6 +14,10 @@ const BUILD_ARTIFACTS = [
     './index.esm.js.map'
 ];
 
+const devMode = process.env.NODE_ENV === 'dev';
+console.log(`${devMode ? 'dev' : 'prod'} mode bundle`);
+
+
 export default {
     input: 'src/index.ts', // Entry point for your library
     output: [
@@ -29,8 +33,8 @@ export default {
                         module: true,
                         toplevel: true,
                         unsafe_arrows: true,
-                        drop_console: true,
-                        drop_debugger: true,
+                        drop_console: !devMode,
+                        drop_debugger: !devMode,
                     },
                     output: { quote_style: 1 },
                 }),
@@ -68,5 +72,5 @@ export default {
             copySync: true,
         }),
     ],
-    external: [], // Specify external dependencies here
+    external: ['commander'], // Specify external dependencies here
 };

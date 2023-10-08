@@ -4,22 +4,20 @@
   "description": "This package is a typescript-standalone package to scan several source code files for a copyright header.",
   "main": "./index.esm.js",
   "module": "./index.esm.js",
-  "files": [
-    "dist"
-  ],
   "types": "./index.d.ts",
   "type": "module",
   "bin": {
-    "cpyr8-lint": "./index.esm.js"
+    "cpyr8": "./index.esm.js"
   },
   "scripts": {
-    "build": "rm -rf dist && rollup -c && npm run clean-package",
+    "build": "rm -rf dist && rollup -c --environment NODE_ENV:prod&& npm run clean-package",
+    "build:dev": "rm -rf dist && rollup -c --environment NODE_ENV:dev && npm run clean-package",
     "watch": "tsc -w && rollup -cw",
     "clean": "rm -rf ./dist",
     "copy:artifacts": "sh./buildtools/copy-artifacts.js",
     "clean-package": "node ./buildtools/cleanup-package.js",
-    "start": "node ./dist/index.js",
-    "start:dev": "node ./index.ts",
+    "start": "node ./dist/index.esm.js",
+    "start:dev": "ts-node ./index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -46,6 +44,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "commander": "^11.0.0",
     "fs-extra": "^11.1.1"
   }
 }

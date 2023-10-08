@@ -3,32 +3,36 @@
  * @copyright Copyright (c) 2023 Christian Silfang
  */
 
-import { readFileSync } from 'fs';
+import * as fs from 'fs';
+import { Cli } from './cli';
+import { ConfigReader } from './config-reader/config-reader';
 
-// const file = readFileSync('./index.ts', 'utf-8');
-// console.log('file:::', file);
 
 export class CopyrightLinter {
 
-    private config: string;
-
-    constructor(configPath: string) {
-
-        const configFile = readFileSync(configPath, 'utf-8');
-        console.log('file:::', configFile);
-
-        this.config = configFile;
+    constructor() {
 
     }
 
-    lint() {
+    public lint() {
 
-        console.log('START SCAN >>> ', this.config);
+        let fileContent = fs.readFileSync(process.cwd()+ '/package.json', 'utf-8');
+        // console.log(fileContent);
+
+        // console.log('START SCAN >>> ', fileContent);
     }
+
+
 }
 
-const baseHref = process.cwd();
-console.log('exec folder:::', baseHref);
+// const cli = new Cli();
+// cli.program
 
-const linter = new CopyrightLinter(baseHref + '/CPYR8-LINT.config.json');
+const baseHref = process.cwd();
+// console.log('exec folder:::', baseHref);
+
+const configReader = new ConfigReader();
+// console.log('config:::', configReader.get());
+
+const linter = new CopyrightLinter();
 linter.lint();
